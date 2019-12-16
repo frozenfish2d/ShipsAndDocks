@@ -2,8 +2,8 @@ package com.company;
 
 public class Ship {
 
-    public final int size;
-    public final int type;
+    final int size;
+    final int type;
     private int total = 0;
 
     public int getTotal() {

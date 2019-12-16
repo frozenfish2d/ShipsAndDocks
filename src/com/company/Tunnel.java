@@ -1,15 +1,18 @@
 package com.company;
 
-import javax.swing.plaf.TableHeaderUI;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
-public class Tunnel extends Thread {
+
+class Tunnel extends Thread {
     private final int tunnelSize = 5;
 
     List<Ship> ships = new ArrayList<>(tunnelSize);
+
+
+    void addShip(Ship ship){
+        ships.add(ship);
+    }
 
 
     Sea sea;
@@ -19,13 +22,23 @@ public class Tunnel extends Thread {
 
     }
 
-
-
-
-    void getIntoTunnel() {
-        if (ships.size()>tunnelSize)
+    private void getIntoTunnel() {
+        if (ships.size() <= tunnelSize)
             ships.add(sea.pullShip());
     }
 
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                Thread.sleep(10000);
+                getIntoTunnel();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
+        }
+
+
+    }
 }
