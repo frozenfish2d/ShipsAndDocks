@@ -10,21 +10,13 @@ public class ShipGenerator extends Thread {
         this.sea = sea;
     }
 
-    public int getCount() {
-        return count;
-    }
-
     @Override
     public void run() {
         super.run();
         while (true) {
-            try {
-                sea.add(new Ship((int) (Math.random() * 100), (int) (Math.random() * 3)));
-                count++;
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            sea.add(new Ship(50 + (int) (Math.random() * 50), (int) (Math.random() * 3)));
+            count++;
+
         }
     }
 }

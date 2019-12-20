@@ -10,12 +10,6 @@ class Tunnel extends Thread {
 
     List<Ship> ships = new ArrayList<>(tunnelSize);
 
-
-    void addShip(Ship ship) {
-        ships.add(ship);
-    }
-
-
     Sea sea;
 
     Tunnel(Sea sea) {
@@ -28,23 +22,23 @@ class Tunnel extends Thread {
             ships.add(sea.pullShip());
     }
 
-    synchronized Ship  pullShipToDock() {
+    synchronized Ship pullShipToDock() {
         Iterator<Ship> iterator = ships.iterator();
         Ship tmpShip = null;
         if (iterator.hasNext()) {
-            System.out.println("Ship going to dock");
+            //System.out.println("Ship going to dock");
             tmpShip = iterator.next();
             iterator.remove();
-            return tmpShip;
 
-        } else return tmpShip;
+        }
+        return tmpShip;
     }
 
     @Override
     public void run() {
         while (true) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(100);
                 getIntoTunnel();
             } catch (InterruptedException e) {
                 e.printStackTrace();

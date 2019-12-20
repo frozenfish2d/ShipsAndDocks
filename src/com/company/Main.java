@@ -1,8 +1,6 @@
 package com.company;
 
 
-import java.util.concurrent.ExecutorService;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -17,7 +15,6 @@ public class Main {
         dock1.start();
         dock2.start();
         dock3.start();
-        //tunnel.addShip(sea.pullShip());
 
     }
 }
