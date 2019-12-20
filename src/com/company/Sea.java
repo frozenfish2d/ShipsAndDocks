@@ -13,18 +13,15 @@ public class Sea {
         }
     }
 
-    int getShipList() {
-        return shipList.size();
-    }
-
-
     Ship pullShip() {
-        if (shipList.listIterator().hasNext()) {
+        Iterator<Ship> iterator = shipList.iterator();
+        Ship tmpShip = null;
+        if (iterator.hasNext()) {
             System.out.println("add ship into tunnel");
-            shipList.remove(0);
-            return shipList.listIterator().next();
-
-        } else return null;
+            tmpShip = iterator.next();
+            iterator.remove();
+            return tmpShip;
+        } else return tmpShip;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -10,7 +11,7 @@ class Tunnel extends Thread {
     List<Ship> ships = new ArrayList<>(tunnelSize);
 
 
-    void addShip(Ship ship){
+    void addShip(Ship ship) {
         ships.add(ship);
     }
 
@@ -23,22 +24,32 @@ class Tunnel extends Thread {
     }
 
     private void getIntoTunnel() {
-        if (ships.size() <= tunnelSize)
+        if (ships.size() < tunnelSize)
             ships.add(sea.pullShip());
+    }
+
+    synchronized Ship  pullShipToDock() {
+        Iterator<Ship> iterator = ships.iterator();
+        Ship tmpShip = null;
+        if (iterator.hasNext()) {
+            System.out.println("Ship going to dock");
+            tmpShip = iterator.next();
+            iterator.remove();
+            return tmpShip;
+
+        } else return tmpShip;
     }
 
     @Override
     public void run() {
         while (true) {
             try {
-                Thread.sleep(10000);
+                Thread.sleep(500);
                 getIntoTunnel();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
         }
-
-
     }
 }

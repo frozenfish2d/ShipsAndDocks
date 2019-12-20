@@ -19,9 +19,9 @@ public class ShipGenerator extends Thread {
         super.run();
         while (true) {
             try {
-                sea.add(new Ship(100, (int) Math.random() * 3));
+                sea.add(new Ship((int) (Math.random() * 100), (int) (Math.random() * 3)));
                 count++;
-                Thread.sleep(1000);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
