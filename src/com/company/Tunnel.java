@@ -26,10 +26,8 @@ class Tunnel extends Thread {
         Iterator<Ship> iterator = ships.iterator();
         Ship tmpShip = null;
         if (iterator.hasNext()) {
-            //System.out.println("Ship going to dock");
             tmpShip = iterator.next();
             iterator.remove();
-
         }
         return tmpShip;
     }
@@ -37,13 +35,7 @@ class Tunnel extends Thread {
     @Override
     public void run() {
         while (true) {
-            try {
-                Thread.sleep(100);
-                getIntoTunnel();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
+            getIntoTunnel();
         }
     }
 }

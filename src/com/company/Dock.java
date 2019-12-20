@@ -20,7 +20,7 @@ public class Dock extends Thread {
         while (true) {
             if (ship == null) {
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(1);
                     getShipFromTunnel();
 
                 } catch (InterruptedException e) {
@@ -51,21 +51,18 @@ public class Dock extends Thread {
 
     private void loading(int counter, int timeout) {
         int load = 0;
-        while (load < ship.size) {
+        while (load + counter < ship.size) {
             try {
-                if ((load + counter) > ship.size) {
-                    break;
-                }
                 load += counter;
-
                 Thread.sleep(timeout);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("Номер дока: " + Thread.currentThread().getName());
-        System.out.println("Размер корабля: " + ship.size + " тип корабля: " + ship.type + " объем загрузки за один шаг: " + counter + " задержка(мс): " + timeout);
-        System.out.println("Заполнен на: " + load);
+        System.out.println("Номер дока:" + Thread.currentThread().getName());
+        System.out.println("Объем корабля:" + ship.size + " Тип корабля:" + ship.type );
+        System.out.println("Объем загрузки за один шаг:" + counter + " Задержка между партиями загрузки (мс):" + timeout);
+        System.out.println("Заполнен на:" + load);
         System.out.println();
         ship = null;
     }

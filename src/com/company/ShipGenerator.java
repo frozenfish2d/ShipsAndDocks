@@ -1,10 +1,8 @@
 package com.company;
 
 public class ShipGenerator extends Thread {
+
     private final Sea sea;
-
-
-    private int count = 0;
 
     ShipGenerator(Sea sea) {
         this.sea = sea;
@@ -14,9 +12,7 @@ public class ShipGenerator extends Thread {
     public void run() {
         super.run();
         while (true) {
-            sea.add(new Ship(50 + (int) (Math.random() * 50), (int) (Math.random() * 3)));
-            count++;
-
+            sea.add(new Ship(50 + (int) (Math.random() * 100), (int) (Math.random() * 4)));
         }
     }
 }
